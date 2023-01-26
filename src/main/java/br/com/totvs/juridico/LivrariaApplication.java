@@ -2,6 +2,7 @@ package br.com.totvs.juridico;
 
 import dto.LivroDTO;
 import java.util.ArrayList;
+import java.util.List;
 
 public class LivrariaApplication {
     ArrayList<LivroDTO> listLivros= new ArrayList<>();
@@ -32,27 +33,44 @@ public class LivrariaApplication {
             LivroDTO novoLivro = new LivroDTO(this.listLivros.size(), nome, genero);
             this.listLivros.add(novoLivro);
         } else {
+            System.out.println(" O livro " + nome + genero  );
+
             /**
              * Monte a mensagem de erro avisando que já existe um Livro cadastrado sobre o nome e genero passados
              */
+
+            //Utilizei o println para imprimir as Strings nome e genero do livro e assim informando ao usario a mensagem de erro.
         }
     }
 
     public int buscarLivro(String nomeLivro, String genero){
-        int indiceLivro = -1;
+        int indiceLivro = 0;
 
         for (int index = 0 ; index < this.listLivros.size(); index++){
             LivroDTO livro = this.listLivros.get(index);
             /**
              * Implemente a validação onde retorne o Indice do Livro caso encontre um com mesmo nome e genero
              */
+            if (livro.getNome() == nomeLivro && livro.getGenero() == genero){
+                indiceLivro = 1;
+                break;
+            }
         }
         return indiceLivro;
     }
 
-    public String listarLivrosFantasia(){
-        /**
-         * Retorne uma String contendo todos os Livros que são de fantasia.
-         */
+    public String listarLivrosFantasia() {
+    //    String[] livros = {"Todos os livros de fantasia"};
+    //    List<String> receberLivros = new ArrayList<>();
+        // receberLivros = listarLivrosFantasia(livros);
+
+        String livrosFantasia;
+
+        for (LivroDTO livro : listLivros){
+            if (livro.getNome() == "Fantasia"){
+               livrosFantasia = livro.getNome() + livro.getNome();
+            }
+        }
+        return livrosFantasia;
     }
 }
